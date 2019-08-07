@@ -37,6 +37,10 @@ use hotelbeds\hotel_api_sdk\helpers\Booking;
 use hotelbeds\hotel_api_sdk\messages\BookingListRS;
 use hotelbeds\hotel_api_sdk\helpers\BookingList;
 
+use hotelbeds\hotel_api_sdk\messages\BookingDetailRS;
+
+use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
+
 use hotelbeds\hotel_api_sdk\model\AuditData;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
@@ -57,6 +61,7 @@ use Zend\Uri\UriFactory;
  * @method BookingConfirmRS BookingConfirm(Booking $bookingData) Method allows confirmation of the rate keys selected.  There is an option of confirming more than one rate key for the same hotel/room/board.
  * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
+ * @method BookingDetailRS BookingDetail( string $bookingId ) To get a booking with all its details
  */
 class HotelApiClient
 {
