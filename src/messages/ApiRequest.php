@@ -13,6 +13,7 @@ use hotelbeds\hotel_api_sdk\types\ApiUri;
 use Zend\Http\Request;
 use Zend\Uri\Http;
 use Zend\Stdlib\Parameters;
+use hotelbeds\hotel_api_sdk\types\HotelSDKException;
 
 /**
  * Class ApiRequest This is abstract request class define how prepare final HTTP Request
@@ -56,9 +57,11 @@ abstract class ApiRequest implements ApiCallTypes
     }
 
     /**
-     * @param string $apiKey API Key of client
+     * @param string $apiKey    API Key of client
      * @param string $signature Computed signature for made this call
+     *
      * @return Request Return well constructed HTTP Request
+     * @throws HotelSDKException
      */
     public function prepare($apiKey, $signature)
     {
@@ -78,11 +81,19 @@ abstract class ApiRequest implements ApiCallTypes
         if (!empty($this->dataRQ)) {
             switch($this->request->getMethod()) {
                 case Request::METHOD_GET:
-                        $this->request->setQuery(new Parameters($this->dataRQ->toArray()));
-                        break;
+                    $this->request->setQuery(new Parameters($this->dataRQ->toArray()));
+                    break;
+
                 case Request::METHOD_POST:
-                        $this->request->getHeaders()->addHeaders(['Content-Type' => 'application/json']);
-                        $this->request->setContent("".$this->dataRQ);
+                case Request::METHOD_PUT:
+                    $this->request->getHeaders()->addHeaders(['Content-Type' => 'application/json']);
+                    $this->request->setContent("".$this->dataRQ);
+                    break;
+
+                default:
+                    throw new HotelSDKException(
+                        \sprintf('Request method "%s" is not supported!', $this->request->getMethod())
+                    );
             }
         }
 

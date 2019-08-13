@@ -41,6 +41,9 @@ use hotelbeds\hotel_api_sdk\messages\BookingDetailRS;
 
 use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
 
+use hotelbeds\hotel_api_sdk\helpers\BookingChange;
+use hotelbeds\hotel_api_sdk\messages\BookingChangeRS;
+
 use hotelbeds\hotel_api_sdk\model\AuditData;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
@@ -62,6 +65,7 @@ use Zend\Uri\UriFactory;
  * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
  * @method BookingDetailRS BookingDetail( string $bookingId ) To get a booking with all its details
+ * @method BookingChangeRS BookingChange( BookingChange $bookingData ) To change booking details
  */
 class HotelApiClient
 {

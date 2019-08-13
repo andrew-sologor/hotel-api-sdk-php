@@ -19,7 +19,8 @@ class BookingDetailRQ extends ApiRequest
     public function __construct(ApiUri $baseUri, $bookingId)
     {
         parent::__construct($baseUri, self::BOOKING);
+
         $this->request->setMethod(Request::METHOD_GET);
-        $this->baseUri->setPath($baseUri->getPath() . "/" . self::BOOKING . "/$bookingId");
+        $this->baseUri->setPath($baseUri->getPath() . '/' . self::BOOKING . '/' . $bookingId);
     }
 }

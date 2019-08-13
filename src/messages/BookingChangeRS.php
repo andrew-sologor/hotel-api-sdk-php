@@ -7,9 +7,8 @@ use hotelbeds\hotel_api_sdk\model\AuditData;
 
 /**
  * @package hotelbeds\hotel_api_sdk\messages
- * @property Booking $booking
  */
-class BookingDetailRS extends ApiResponse
+class BookingChangeRS extends ApiResponse
 {
     /**
      * BookingConfirmRS constructor.
